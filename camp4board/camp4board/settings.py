@@ -75,7 +75,7 @@ WSGI_APPLICATION = "camp4board.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 database_name = os.environ['DB_NAME']
 database_user = os.environ['DB_USER']
-database_passWORD = os.environ['DB_PASSWORD']
+database_password = os.environ['DB_PASSWORD']
 database_host = os.environ['DB_HOST']
 database_port = os.environ['DB_PORT']
 
