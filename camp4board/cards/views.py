@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Card
 from .forms import CardForm
-from datetime import datetime 
+from django.utils import timezone
 
 def card_list(request):
-    now = datetime.now()
+    now = timezone.now()
     non_expired_cards = Card.objects.filter(expiration_date__gte=now)
     return render(request, 'cards/card_list.html', {'cards': non_expired_cards})
 
