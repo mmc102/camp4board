@@ -4,8 +4,7 @@ from .forms import CardForm
 from django.utils import timezone
 
 def card_list(request):
-    now = timezone.now()
-    non_expired_cards = Card.objects.filter(expiration_date__gte=now)
+    non_expired_cards = Card.objects.all()
     return render(request, 'cards/card_list.html', {'cards': non_expired_cards})
 
 def add_card(request):
