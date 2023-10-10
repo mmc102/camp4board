@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Card List</title>
+    <title>Camp 4 Bulletin Board</title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="mb-4">Card List</h1>
+        <h1 class="mb-4">Camp 4 Bulletin Board</h1>
         <div class="row">
             {% for card in cards %}
                 <div class="col-md-4 mb-4">
@@ -21,7 +21,7 @@
                 </div>
             {% endfor %}
         </div>
-        <a href="{% url 'add_card' %}" class="btn btn-primary">Add Card</a>
+        <a href="{% url 'add_card' %}" class="btn btn-primary">Create Post</a>
     </div>
 </body>
 </html>
