@@ -5,6 +5,53 @@
     <title>Camp 4 Bulletin Board</title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+    <style>
+        body {
+            background-image: url('yosemite_background.jpg'); /* Add an outdoor image background */
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: "Arial", sans-serif;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for readability */
+            padding: 20px;
+            border: 1px solid #b8b8b8;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #3b3b3b; /* Dark text color */
+            font-size: 36px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for a rustic look */
+        }
+
+        .card {
+            background-color: #f5f5f5; /* Light gray background for each card */
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Card shadow */
+        }
+
+        .card-title {
+            font-size: 24px;
+            color: #3b3b3b; /* Dark title color */
+        }
+
+        .card-text {
+            color: #333; /* Slightly darker text color */
+        }
+
+        .btn-primary {
+            background-color: #8b4513; /* SaddleBrown button color */
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #5a2a10; /* Darker color on hover */
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -25,4 +72,3 @@
     </div>
 </body>
 </html>
-
