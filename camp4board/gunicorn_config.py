@@ -5,5 +5,5 @@ workers = multiprocessing.cpu_count() * 2 + 1
 worker_class = "gthread"
 threads = 2
 
-errorlog = "~/logs/error.log"
-accesslog = "~/logs/access.log"
+errorlog = "logs/error.log"
+accesslog = "logs/access.log"
