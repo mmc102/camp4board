@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure--e0+!8-_tvn*9f9cuw5_%##-qh67fioknas@*h!-^k8w$r21t$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["18.221.78.251","camp4board.com"]
 
 # Application definition
 
