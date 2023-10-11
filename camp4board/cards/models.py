@@ -6,6 +6,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Card(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
+    create_date= models.DateTimeField(default=timezone.now)
     days_to_post = models.PositiveSmallIntegerField(
             validators=[
                 MinValueValidator(1),

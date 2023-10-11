@@ -9,14 +9,15 @@ from .models import Card
 def card_list(request):
     now = timezone.now()
     all_cards = Card.objects.all()
-    non_expired = [card for card in all_cards if card.expiration_date >= now]
+    non_expired = sorted([card for card in all_cards if card.expiration_date >= now], key=lambda x: x.create_date, reverse=True)
     return render(request, 'cards/card_list.html', {'cards': non_expired})
 
 def add_card(request):
+
     if request.method == 'POST':
         form = CardForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/') 
+            return redirect('/')
     form = CardForm()
     return render(request, 'cards/add_card.html', {'form': form})
