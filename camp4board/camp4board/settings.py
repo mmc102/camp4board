@@ -25,8 +25,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", False)
 
-ALLOWED_HOSTS = ["18.221.78.251", "localhost","www.yocamp4.com" ,"yocamp4.com"]
-
+ALLOWED_HOSTS = ["18.221.78.251", "localhost","www.yocamp4.com" ,"yocamp4.com", "127.0.0.1"]
 # Application definition
 
 INSTALLED_APPS = [

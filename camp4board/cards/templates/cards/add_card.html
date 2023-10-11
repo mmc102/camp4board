@@ -1,20 +1,81 @@
 {% load bootstrap4 %}
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Add Card</title>
-     {% bootstrap_css %}
-    {% bootstrap_javascript %}
-</head>
-<body>
-    <div class="container mt-5">
-        <h1 class="mb-4">Add Card</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form }}
-            <button type="submit" class="btn btn-primary">Add Card</button>
-        </form>
-    </div>
-</body>
+    <head>
+        <title>Add Card</title>
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        <style>
+         h1 {
+             color: #3b3b3b;
+             font-size: 36px;
+             text-align: center;
+             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+         }
+
+         h3 {
+             color: #3b3b3b;
+             font-size: 24px;
+             text-align: center;
+             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+         }
+
+         form {
+             background-color: rgba(255, 255, 255, 0.8);
+             padding: 20px;
+             border: 1px solid #b8b8b8;
+             border-radius: 10px;
+         }
+
+         button {
+             background-color: #8b4513;
+             border: none;
+         }
+
+         button:hover {
+             background-color: #5a2a10;
+         }
+
+         /* Organize form fields in a two-column layout */
+         .form-group {
+             display: flex;
+             flex-direction: row;
+             justify-content: space-between;
+         }
+
+         .form-group label {
+             flex: 1;
+             text-align: right;
+             padding-right: 10px;
+         }
+
+         .form-group input {
+             flex: 3;
+         }
+        </style>
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h1 class="mb-4">Add Card</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.title.label_tag }}
+                    {{ form.title }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.content.label_tag }}
+                    {{ form.content }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.days_to_post.label_tag }}
+                    {{ form.days_to_post}}
+                </div>
+                <button type="submit" class="btn btn-primary">Add Card</button>
+            </form>
+        </div>
+    </body>
 </html>
 

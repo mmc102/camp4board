@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camp 4 Bulletin Board</title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
@@ -66,10 +68,9 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #fff;
+            color: #333;
             padding: 5px;
-            font-size: 14px;
+            font-size: 10px;
             text-align: center;
             border-bottom-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -79,24 +80,48 @@
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Camp 4 Bulletin Board</h1>
-            <h3 class="mb-4">shitpost, beg for NIAD partners, sell junk, etc! </h3>
+            <h3 class="mb-4">shitpost, beg for a NIAD partner, sell junk, ..?  </h3>
         <div class="row">
             {% for card in cards %}
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ card.title }}</h5>
-                            <p class="card-text">{{ card.content }}</p>
-                        </div>
-                        <!-- Expiration text -->
-                        <div class="expiration-text">
-                            Expires: {{ card.expiration_date|date:"F d, Y H:i" }}
-                        </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ card.title }}</h5>
+                        <p class="card-text" id="card-content-{{ card.id }}">
+                            {{ card.content|truncatechars:140 }}
+                        </p>
+                        <p class="card-text d-none" id="full-card-content-{{ card.id }}">
+                            {{ card.content }}
+                        </p>
+                        {% if card.content|length > 140 %}
+                        <button class="btn btn-link" id="show-more-button-{{ card.id }}">Show More</button>
+                        {% endif %}
+                    </div>
+                    <div class="expiration-text">
+                        Expires: {{ card.expiration_date|date:"F d" }}
                     </div>
                 </div>
+            </div>
             {% endfor %}
+
         </div>
         <a href="{% url 'add_card' %}" class="btn btn-primary">Create Post</a>
     </div>
+    <script>
+     document.addEventListener('DOMContentLoaded', function() {
+         const showMoreButtons = document.querySelectorAll('[id^="show-more-button-"]');
+         showMoreButtons.forEach(button => {
+             const cardId = button.id.split('-')[3];
+             const truncatedContentElement = document.getElementById(`card-content-${cardId}`);
+             const fullContentElement = document.getElementById(`full-card-content-${cardId}`);
+             button.addEventListener('click', function() {
+                 truncatedContentElement.classList.toggle('d-none');
+                 fullContentElement.classList.toggle('d-none');
+                 button.textContent = truncatedContentElement.classList.contains('d-none') ? 'Show More' : 'Show Less';
+             });
+         });
+     });
+    </script>
+
 </body>
 </html>
