@@ -1,92 +1,96 @@
-{% load bootstrap4 %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Add Card</title>
-        {% bootstrap_css %}
-        {% bootstrap_javascript %}
-        <style>
-         body {
-             background-size: cover;
-             background-repeat: no-repeat;
-             font-family: "Arial", sans-serif;
-         }
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: "Arial", sans-serif;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border: 1px solid #b8b8b8;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #3b3b3b;
+            font-size: 36px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
 
-         h1 {
-             color: #3b3b3b;
-             font-size: 36px;
-             text-align: center;
-             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-         }
+        h3 {
+            color: #3b3b3b;
+            font-size: 24px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
 
-         h3 {
-             color: #3b3b3b;
-             font-size: 24px;
-             text-align: center;
-             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-         }
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+        }
 
-         form {
-             background-color: rgba(255, 255, 255, 0.8);
-             padding: 20px;
-             border: 1px solid #b8b8b8;
-             border-radius: 10px;
-         }
+        .btn-primary {
+            background-color: #8b4513;
+            border: none;
+        }
 
+        .btn-primary:hover {
+            background-color: #5a2a10;
+        }
 
-         .btn-primary {
-             background-color: #8b4513;
-             border: none;
-         }
+        /* Organize form fields in a two-column layout */
+        .form-group {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
 
-         .btn-primary:hover {
-             background-color: #5a2a10;
-         }
+        .form-group label {
+            flex: 1;
+            text-align: left;
+            padding-right: 10px;
+        }
 
+        .form-group input {
+            flex: 3;
+        }
+    </style>
+    <div class="container mt-5">
+        <form method="post">
 
+            {% if errors %}
+                {{errors}}
+            {% endif %}
 
-         /* Organize form fields in a two-column layout */
-         .form-group {
-             display: flex;
-             flex-direction: row;
-             justify-content: space-between;
-         }
+            <h1 class="mb-4">Make New Post</h1>
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.title.label_tag }}
+                {{ form.title }}
+            </div>
 
-         .form-group label {
-             flex: 1;
-             text-align: left;
-             padding-right: 10px;
-         }
+            <div class="form-group">
+                {{ form.content.label_tag }}
+                {{ form.content }}
+            </div>
 
-         .form-group input {
-             flex: 3;
-         }
-        </style>
-    </head>
-    <body>
-        <div class="container mt-5">
-            <h1 class="mb-4">Add Card</h1>
-            <form method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    {{ form.title.label_tag }}
-                    {{ form.title }}
-                </div>
+            <div class="form-group">
+                {{ form.days_to_post.label_tag }}
+                {{ form.days_to_post}}
+            </div>
+            <button type="submit" class="btn btn-primary">Post</button>
+        </form>
+        <script>document.addEventListener('DOMContentLoaded', function() {
+            const select = document.getElementById('days-to-post-select');
+            const daysToPostInput = document.querySelector('input[name="days_to_post"]'); // Update the selector to match your form structure
 
-                <div class="form-group">
-                    {{ form.content.label_tag }}
-                    {{ form.content }}
-                </div>
+            select.addEventListener('change', function() {
+            daysToPostInput.value = select.value;
+            });
+         });
+        </script>
+    </div>
 
-                <div class="form-group">
-                    {{ form.days_to_post.label_tag }}
-                    {{ form.days_to_post}}
-                </div>
-                <button type="submit" class="btn btn-primary">Add Card</button>
-            </form>
-        </div>
-    </body>
-</html>
-
+{% endblock %}

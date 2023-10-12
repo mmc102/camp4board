@@ -19,5 +19,7 @@ def add_card(request):
         if form.is_valid():
             form.save()
             return redirect('/')
+        else:
+            return render(request, 'cards/add_card.html', {'form': form, 'errors':form.errors})
     form = CardForm()
     return render(request, 'cards/add_card.html', {'form': form})

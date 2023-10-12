@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from datetime import timedelta
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MinValueValidator,MaxValueValidator 
 
 class Card(models.Model):
     title = models.CharField(max_length=200)
@@ -13,6 +13,7 @@ class Card(models.Model):
                 MaxValueValidator(14),
             ],
             default=10,
+            choices=[(i,str(i)) for i in range(0,11)],
         )
     @property
     def expiration_date(self):
