@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ card.title }}</h5>
+            <p class="card-text">{{ card.content }}</p>
+        </div>
+    </div>
+
+    <h3>Comments</h3>
+    <ul>
+        {% for comment in comments %}
+        <li class="comment-item">
+            <span class="comment-meta">
+                {% if comment.username %}
+                <span class="comment-username">{{ comment.username }}</span>
+                {% else %}
+                <span class="comment-username">Anonymous</span>
+                {% endif %}
+                <span class="comment-date">{{ card.create_date|date:"F d, Y" }}</span>
+            </span>
+            <p class="comment-content">{{ comment.content }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+
+    <h3>Scream To The Void</h3>
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            {{comment_form.username.label_tag}} {{ comment_form.username }}
+        </div>
+
+        <div class="form-group">
+        {{ comment_form.content.label_tag }} {{ comment_form.content }}
+        </div>
+        <button type="submit" class="btn btn-primary">Add Comment</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,125 +1,44 @@
 {% extends "base.html" %}
 {% block content %}
 <style>
-    body {
-        background-size: cover;
-        background-repeat: no-repeat;
-        font-family: "Arial", sans-serif;
-    }
+ .card {
+     position: relative; /* Needed for the expiration text positioning */
+     transition: transform 0.2s;
+ }
+ .card:hover{
+     transform: scale(1.05); 
+ }
 
-    .container {
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 20px;
-        border: 1px solid #b8b8b8;
-        border-radius: 10px;
-    }
-
-    h1 {
-        color: #3b3b3b;
-        font-size: 36px;
-        text-align: center;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-    h3 {
-        color: #3b3b3b;
-        font-size: 24px;
-        text-align: center;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-
-
-    .card {
-        background-color: #f5f5f5;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        position: relative; /* Needed for the expiration text positioning */
-    }
-
-    .card-title {
-        font-size: 24px;
-        color: #3b3b3b;
-    }
-
-    .card-text {
-        color: #333;
-    }
-
-    .btn-primary {
-        background-color: #8b4513;
-        border: none;
-    }
-
-    .btn-primary:hover {
-        background-color: #5a2a10;
-    }
-
-    .expiration-text {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        color: #333;
-        padding: 5px;
-        font-size: 10px;
-        text-align: center;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-    }
 </style>
-    <div class="container mt-5">
+<div class="container mt-5">
 
 
-        <div class="row">
-            {% for card in cards %}
-            <div class="col-md-4 mb-4">
+    <div class="row">
+        {% for card in cards %}
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'card_detail' card.id %}" class="no-link-style">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ card.title }}</h5>
                         <p class="card-text" id="card-content-{{ card.id }}">
                             {{ card.content|truncatechars:140 }}
                         </p>
-                        <p class="card-text d-none" id="full-card-content-{{ card.id }}">
-                            {{ card.content }}
-                        </p>
-                        {% if card.content|length > 140 %}
-                        <button class="btn btn-link" id="show-more-button-{{ card.id }}">Show More</button>
-                        {% endif %}
                     </div>
-                    <div class="expiration-text">
-                        Expires: {{ card.expiration_date|date:"F d" }}
-                    </div>
+                        <div class="expiration-text">
+                            Expires: {{ card.expiration_date|date:"F d" }}
+                        </div>
+                        <div class="comments-count">
+                            <i class="fas fa-comments"></i> {{ card.comments.count }}
+                        </div>
                 </div>
-            </div>
-            {% endfor %}
 
+            </a>
         </div>
+        {% endfor %}
+
     </div>
+</div>
 <script>
-    const showMoreButtons = document.querySelectorAll('[id^="show-more-button-"]');
-    showMoreButtons.forEach(button => {
-        const cardId = button.id.split('-')[3];
-        console.log(cardId)
-        const truncatedContentElement = document.getElementById(`card-content-${cardId}`);
-        const fullContentElement = document.getElementById(`full-card-content-${cardId}`);
-        let isExpanded = false;
-
-
-        button.addEventListener('click', function() {
-
-            isExpanded = !isExpanded;
-            if (isExpanded) {
-                truncatedContentElement.classList.add('d-none');
-                fullContentElement.classList.remove('d-none');
-                button.textContent = 'Show Less';
-            } else {
-                truncatedContentElement.classList.remove('d-none');
-                fullContentElement.classList.add('d-none');
-                button.textContent = 'Show More';
-            }
-
-        });
-    });
 </script>
 
 {% endblock %}
