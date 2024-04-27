@@ -11,7 +11,7 @@ def card_list(request):
     non_expired = sorted([card for card in all_cards if not card.is_expired], key=lambda x: x.create_date, reverse=True)
     for card in non_expired:
         card.comments = Comment.objects.filter(card=card)
-    return render(request, 'cards/card_list.html', {'cards': non_expired, 'percentage': count_of_cards/GOAL, 'total_posts': count_of_cards, 'goal':GOAL})
+    return render(request, 'cards/card_list.html', {'cards': non_expired,  'percentage': (count_of_cards/GOAL)*100, 'total_posts': count_of_cards, 'goal':GOAL})
 
 def add_card(request):
 
@@ -26,7 +26,7 @@ def add_card(request):
             return render(request, 'cards/add_card.html', {'form': form, 'errors':form.errors})
 
     form = CardForm()
-    return render(request, 'cards/add_card.html', {'form': form, 'goal':GOAL, 'percentage': count_of_cards/GOAL, 'total_posts': count_of_cards})
+    return render(request, 'cards/add_card.html', {'form': form, 'goal':GOAL,'percentage': (count_of_cards/GOAL)*100, 'total_posts': count_of_cards})
 
 def card_detail(request, card_id):
     card = get_object_or_404(Card, id=card_id)
@@ -44,4 +44,4 @@ def card_detail(request, card_id):
             new_comment.save()
             return redirect('card_detail', card_id=card_id)
 
-    return render(request, 'cards/card_detail.html', {'card': card, 'comments': comments, 'comment_form': comment_form,  'percentage': count_of_cards/GOAL, 'total_posts': count_of_cards, 'goal':GOAL})
+    return render(request, 'cards/card_detail.html', {'card': card, 'comments': comments, 'comment_form': comment_form,  'percentage': (count_of_cards/GOAL)*100, 'total_posts': count_of_cards, 'goal':GOAL})
