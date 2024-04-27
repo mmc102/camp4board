@@ -5,9 +5,9 @@
         </div>
         <div class="card-body">
             <h5 class="card-title">{{ total_posts }} Shitposts Made</h5>
-            <p class="card-text">Our goal is to reach 1000 shitposts.</p>
+            <p class="card-text">Our goal is to reach {{goal}} shitposts.</p>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: {{ percentage }}%;" aria-valuenow="{{ total_posts }}" aria-valuemin="0" aria-valuemax="1000">
+                <div class="progress-bar" role="progressbar" style="width: {{ percentage }}%;" aria-valuenow="{{ total_posts }}" aria-valuemin="0" aria-valuemax="{{goal}}">
                     {{ percentage }}%
                 </div>
             </div>
