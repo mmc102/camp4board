@@ -24,7 +24,7 @@
          a:hover {
              text-decoration: none;
              color: inherit;
-        }
+         }
          .container {
              background-color: rgba(255, 255, 255, 0.8);
              padding: 20px;
@@ -109,74 +109,75 @@
          .comment-content {
              font-size: 16px;
              color: #333;
-}
+         }
          ul {
              list-style-type: none;
          }
 
-        body {
-            background-size: cover;
-            background-repeat: no-repeat;
-            font-family: "Arial", sans-serif;
-        }
-        .container {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border: 1px solid #b8b8b8;
-            border-radius: 10px;
-        }
-        h1 {
-            color: #3b3b3b;
-            font-size: 36px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        h3 {
-            color: #3b3b3b;
-            font-size: 24px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        form {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-        }
-        .btn-primary {
-            background-color: #8b4513;
-            border: none;
-        }
-        .btn-primary:hover {
-            background-color: #5a2a10;
-        }
-        /* Organize form fields in a two-column layout */
-        .form-group {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        .form-group label {
-            flex: 1;
-            text-align: left;
-            padding-right: 10px;
-        }
-        .form-group input {
-            flex: 3;
-        }
-        .no-link-style {
+         body {
+             background-size: cover;
+             background-repeat: no-repeat;
+             font-family: "Arial", sans-serif;
+         }
+         .container {
+             background-color: rgba(255, 255, 255, 0.8);
+             padding: 20px;
+             border: 1px solid #b8b8b8;
+             border-radius: 10px;
+         }
+         h1 {
+             color: #3b3b3b;
+             font-size: 36px;
+             text-align: center;
+             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+         }
+         h3 {
+             color: #3b3b3b;
+             font-size: 24px;
+             text-align: center;
+             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+         }
+         form {
+             background-color: rgba(255, 255, 255, 0.8);
+             padding: 20px;
+         }
+         .btn-primary {
+             background-color: #8b4513;
+             border: none;
+         }
+         .btn-primary:hover {
+             background-color: #5a2a10;
+         }
+         /* Organize form fields in a two-column layout */
+         .form-group {
+             display: flex;
+             flex-direction: row;
+             justify-content: space-between;
+         }
+         .form-group label {
+             flex: 1;
+             text-align: left;
+             padding-right: 10px;
+         }
+         .form-group input {
+             flex: 3;
+         }
+         .no-link-style {
              color: inherit; /* Inherit the color from the parent */
              /* Add any other styles you want */
-        }
+         }
 
-        .comments-count {
-            margin-left: 10px; /* Adjust the spacing between expiration and comments */
+         .comments-count {
+             margin-left: 10px; /* Adjust the spacing between expiration and comments */
 
-        }
+         }
 
         </style>
         <div class="container mt-5">
             <div id="clickableDiv">
                 <h1 class="mb-4">Camp 4 Bulletin Board</h1>
                 <h3 class="mb-4">shitpost, beg for a NIAD partner, sell junk, ..?</h3>
+                {% include 'progress.html' %}
                 <a href="{% url 'add_card' %}" class="btn btn-primary">Create Post</a>
             </div>
             {% block content %}{% endblock %}

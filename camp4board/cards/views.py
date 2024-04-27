@@ -3,13 +3,15 @@ from .models import Card
 from .forms import CardForm, CommentForm
 from django.shortcuts import render
 from .models import Card, Comment
+GOAL =1000
 
 def card_list(request):
     all_cards = Card.objects.all()
+    count_of_cards = len(all_cards)
     non_expired = sorted([card for card in all_cards if not card.is_expired], key=lambda x: x.create_date, reverse=True)
     for card in non_expired:
         card.comments = Comment.objects.filter(card=card)
-    return render(request, 'cards/card_list.html', {'cards': non_expired})
+    return render(request, 'cards/card_list.html', {'cards': non_expired, 'percentage': count_of_cards//GOAL, 'total_posts': count_of_cards})
 
 def add_card(request):
 
@@ -20,7 +22,7 @@ def add_card(request):
             return redirect('/')
         else:
             return render(request, 'cards/add_card.html', {'form': form, 'errors':form.errors})
-    form = CardForm()
+        form = CardForm()
     return render(request, 'cards/add_card.html', {'form': form})
 
 def card_detail(request, card_id):
