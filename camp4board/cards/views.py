@@ -24,7 +24,8 @@ def add_card(request):
             return redirect('/')
         else:
             return render(request, 'cards/add_card.html', {'form': form, 'errors':form.errors})
-        form = CardForm()
+
+    form = CardForm()
     return render(request, 'cards/add_card.html', {'form': form,  'percentage': count_of_cards/GOAL, 'total_posts': count_of_cards})
 
 def card_detail(request, card_id):
