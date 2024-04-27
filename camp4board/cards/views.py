@@ -11,7 +11,7 @@ def card_list(request):
     non_expired = sorted([card for card in all_cards if not card.is_expired], key=lambda x: x.create_date, reverse=True)
     for card in non_expired:
         card.comments = Comment.objects.filter(card=card)
-    return render(request, 'cards/card_list.html', {'cards': non_expired, 'percentage': count_of_cards//GOAL, 'total_posts': count_of_cards})
+    return render(request, 'cards/card_list.html', {'cards': non_expired, 'percentage': count_of_cards/GOAL, 'total_posts': count_of_cards})
 
 def add_card(request):
 
